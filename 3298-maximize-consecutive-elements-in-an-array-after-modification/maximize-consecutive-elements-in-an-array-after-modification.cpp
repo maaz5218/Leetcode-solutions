@@ -5,9 +5,7 @@ public:
         vector<int>used(nums.size(),0);
         int cnt=1;
         int mx=1;
-        int i,j;
-        i=0;
-        j=i+1;
+        int i=0,j=i+1;
         int temp=-1;
         while(i<nums.size() && j<nums.size())
 {
