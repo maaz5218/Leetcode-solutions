@@ -1,75 +1,58 @@
-struct Node {
-    Node* links[26];
+struct Node
+{
+    Node* link[26];
     bool isEnd;
-
-    Node() {
-        for (int i = 0; i < 26; i++) {
-            links[i] = nullptr;
-        }
-
-        isEnd = false;
+    Node()
+    {
+        for(int i=0;i<26;i++)
+        link[i]=nullptr;
+            isEnd=false;
     }
 };
-class Trie {
+class Trie
+{
     Node* root;
 public:
-    Trie() {
-        root = new Node();
+Trie()
+{
+    root=new Node();
+}
+void insert(string word)
+{
+    Node* node=root;
+    for(char ch:word)
+    {
+    int idx=ch-'a';
+    if(node->link[idx]==nullptr)
+    {
+    node->link[idx]=new Node();
     }
-
-    void insert(string word) {
-        Node* node = root;
-
-        for (char ch : word) {
-            int idx = ch - 'a';
-
-            if (node->links[idx] == nullptr) {
-                node->links[idx] = new Node();
-            }
-
-            node = node->links[idx];
-        }
-
-        node->isEnd = true;
+    node=node->link[idx];
     }
-
-    bool search(string word) {
-        Node* node = root;
-
-        for (char ch : word) {
-            int idx = ch - 'a';
-
-            if (node->links[idx] == nullptr) {
-                return false;
-            }
-
-            node = node->links[idx];
-        }
-
-        return node->isEnd;
+    node->isEnd=true;
+}
+bool search(string word)
+{
+    Node* node=root;
+    for(char ch:word)
+    {
+    int idx=ch-'a';
+    if(node->link[idx]==nullptr)
+    return false;
+    node=node->link[idx];
     }
-
-    bool startsWith(string prefix) {
-        Node* node = root;
-
-        for (char ch : prefix) {
-            int idx = ch - 'a';
-
-            if (node->links[idx] == nullptr) {
-                return false;
-            }
-
-            node = node->links[idx];
-        }
-
-        return true;
+    return node->isEnd;
+}
+bool startsWith(string prefix)
+{
+    Node* node=root;
+    for(auto ch:prefix)
+    {
+    int idx=ch-'a';
+    if(node->link[idx]==nullptr)
+    return false;
+    node=node->link[idx];
     }
+    return true;
+}
 };
-
-/**
- * Your Trie object will be instantiated and called as such:
- * Trie* obj = new Trie();
- * obj->insert(word);
- * bool param_2 = obj->search(word);
- * bool param_3 = obj->startsWith(prefix);
- */
