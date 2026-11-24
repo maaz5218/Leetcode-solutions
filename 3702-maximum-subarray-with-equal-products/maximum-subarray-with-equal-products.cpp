@@ -4,9 +4,9 @@ public:
         int mx=1;
         for(int i=0;i<nums.size();i++)
         {
-            long long temp=nums[i];
-            long long l=nums[i];
-            long long g=nums[i];
+            int temp=nums[i];
+            int l=nums[i];
+            int g=nums[i];
             for(int j=i+1;j<nums.size();j++)
             {
                     temp*=nums[j];
